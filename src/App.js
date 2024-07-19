@@ -4,12 +4,11 @@ import Navbar from './Components/Navbar';
 import SignUp from './Components/SignUp';
 import Login from './Components/Login';
 import Home from './Components/Home';
-
+import ApiNews from'./Components/NewsChannel';
 import Explore from './Components/Explore';
 import Saved from './Components/Saved';
 import Dashboard from './Components/Dashboard';
-
-
+import NewsList from './Components/NewsChannel';
 import './App.css';
 
 function App() {
@@ -25,8 +24,11 @@ function App() {
       
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/ApiNews' element={<ApiNews/>} />
+       
       </Routes>
     </BrowserRouter>
+    
   );
 }
 

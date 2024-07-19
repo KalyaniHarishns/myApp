@@ -58,39 +58,50 @@
     background-color: transparent; 
     border: none; 
     padding: 0; 
-    display: flex; 
-    justify-content: flex-end;
+    display: flex;
+    margin-top:10px; 
+  width:700px;
+   margin-left:1100px;
      border-radius:10px;
     height:30px;
-    margin-right:50px;
+    
 }
 
 .searchbtn img {
     width: 20px; 
     height: 20px; 
 }
-
-  .logo img{
+.logo{
     cursor: pointer;
     background-color: transparent; 
     border: none; 
-   
+    padding: 0; 
     display: flex; 
-    justify-content: flex-end;
-     width:50px;
-    height:50px;
-    
+    margin-left:1300px;
+     border-radius:10px;
+    height:30px;
    
+    margin-right:50px;
 }
 
+  .logo img{
+    width: 60px; 
+    height: 60px; 
+    margin-top:-40px;
+   margin-left:-10px;
+}
+.container{
+    margin-top:-40px;
+}
 
-.header {
+.header1 {
     display: flex-start;
     justify-content:center; 
     align-items: center; 
-    height: 100vh;
+    height: 80px;
     margin-left:300px; 
     cursor: pointer;
+   
 }
 .h1 {
     font-size: medium;
@@ -100,9 +111,9 @@
 .p{
     display:flex-end;
    justify-content:flex-end;
-   height:100vh;
+  
    margin-left:100px;
-   margin-bottom:0px;
+   margin-bottom:50px;
    cursor: pointer;
    margin-top:20px;
 }
@@ -112,7 +123,7 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-   
+ 
    
 }
 
@@ -121,12 +132,11 @@
     height: auto; 
    cursor: pointer;
    margin-bottom:100px;
-   margin-top:-800px;
+   background-color: black;
    margin-right: 700px;
-   margin-bottom:100px;
-   padding:10px;
-   border:1px solid black;
+    padding:10px;
    border-radius: 10px;
+      
 }                       
 .WorldNews {
     display:flex;
@@ -141,12 +151,12 @@
     width: 150px; 
     height: auto; 
    cursor: pointer;
-   margin-bottom:100px;
-   margin-top:-800px;
-   margin-right: 250px;
-   margin-bottom:100px;
+  margin-top:-350px;
+   margin-bottom:10px;
+   margin-right: 300px;
+   background-color: black;
    padding:10px;
-   border:1px solid black;
+   padding:10px;
    border-radius: 10px;
 }                       
 
@@ -164,12 +174,11 @@
     height: 24vh; 
    cursor: pointer;
    margin-bottom:100px;
-   margin-top:-800px;
-   margin-left: 200px;
-   margin-bottom:100px;
-   padding:10px;
-   border:1px solid black;
+   margin-top:-270px;
+   margin-left: 100px;
    border-radius: 10px;
+   padding:10px;
+   background-color: black;
 }                      
 
 .SportsNews {
@@ -186,11 +195,11 @@
     height: auto; 
    cursor: pointer;
    margin-bottom:100px;
-   margin-top:-800px;
-   margin-left:650px;
-   margin-bottom:100px;
+   margin-top:-270px;
+   margin-left:500px;
+  
    padding:10px;
-   border:1px solid black;
+   background-color: black;
    border-radius: 10px;
 }                      
 .LiveStream {
@@ -206,15 +215,32 @@
     width: 150px; 
     height: auto; 
    cursor: pointer;
-   margin-bottom:100px;
-   margin-top:-800px;
-   margin-left:1100px;
-   margin-bottom:100px;
-   padding:10px;
-   border:1px solid black;
+   margin-bottom: 100px;
+   margin-top:-270px;
+   margin-left:900px;
    border-radius: 10px;
+   padding:10px;
+   background-color: black;
+   
+   
 }                      
-
+.header2 {
+    display: flex-start;
+    justify-content:center; 
+    align-items: center; 
+    height:50px;
+    margin-left:300px;
+    margin-bottom:10px; 
+    cursor: pointer;
+    color: black;
+    margin-bottom:500px;
+   margin-top:-100px;
+}
+.h2 {
+    font-size: medium;
+    text-align: center;
+    
+}
 
 
 

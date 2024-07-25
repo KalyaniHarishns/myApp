@@ -1,4 +1,5 @@
- import React, { useState } from 'react'
+
+import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
@@ -10,7 +11,8 @@ return(
       <div className="LoginContainer">
           <div className="header">
               <div className="text">Login</div>
-             </div>
+              
+           </div>
            
         <div className="inputs">
   {action==="Login"?<div></div>: 

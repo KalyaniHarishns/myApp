@@ -15,15 +15,17 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const channelsResponse = await axios.get('https://newsapi.org/v2/sources?apiKey=eb1be1c8ad3c4d948afcf48ca3908dc1');
-        setChannels(channelsResponse?.data?.sources);
+       
+         const channelsResponse = await axios.get('https://newsapi.org/v2/sources?apiKey=eb1be1c8ad3c4d948afcf48ca3908dc1');
+         setChannels(channelsResponse?.data?.sources.slice(0, 6)); 
 
         const todayNewsResponse = await axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=eb1be1c8ad3c4d948afcf48ca3908dc1');
-        setTodayNews(todayNewsResponse?.data?.articles);
+        console.log('Today\'s News Response:', todayNewsResponse.data); 
+        setTodayNews(todayNewsResponse?.data?.articles.slice(0, 3)); 
 
+        
         const featuredNewsResponse = await axios.get('https://newsapi.org/v2/everything?q=featured&apiKey=eb1be1c8ad3c4d948afcf48ca3908dc1');
-        setFeaturedNews(featuredNewsResponse?.data?.articles);
-
+        setFeaturedNews(featuredNewsResponse?.data?.articles.slice(0, 3)); 
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -65,10 +67,8 @@ const App = () => {
 
   const carouselSettings = {
     speed: 500,
-    slidesToShow: 1,
-    
+    slidesToShow: 3,
     slidesToScroll: 1,
-  
     responsive: [
       {
         breakpoint: 1024,
@@ -92,6 +92,10 @@ const App = () => {
     nextArrow: <CustomNextArrow />
   };
 
+  const displayedNews = searchQuery ? filteredNews : todayNews;
+  const topNews = displayedNews.slice(0, 3); 
+  const bottomNews = displayedNews.slice(0,3); 
+
   return (
     <div className="App">
       <header className="App-header">
@@ -106,7 +110,6 @@ const App = () => {
             />
             <button onClick={handleSearchButtonClick} className="search-button">Search</button>
           </div>
-          <img src="/path-to-your-logo.png" alt="Logo" className="logo" />
         </div>
       </header>
       <main className="App-main">
@@ -120,7 +123,8 @@ const App = () => {
                 {channels.map(channel => (
                   <div key={channel.id} className="channel">
                     <a href={`#channel-${channel.id}`} className="channel-link"></a>
-                    <img src={`https://icons.newschannel.com/ip2/${channel.id}.ico`} alt={channel.name} className="channel-img" />
+                   <img src={`https://via.placeholder.com/150?text=${channel.name}`} alt={channel.name} className="channel-img" />
+                    
                     <div className="channel-name">{channel.name}</div>
                     <div className="channel-description">{channel.description}</div>
                     <a href="#see-all" className="see-all-link">See All</a>
@@ -138,15 +142,35 @@ const App = () => {
               <p>Loading today's news...</p>
             ) : (
               <div className="news-list">
-                {(searchQuery ? filteredNews : todayNews).map((article, index) => (
-                  <div key={index} className="news-item">
-                    <img src="news-item-img"></img>
-                    <h3 className="news-item-title">{article.title}</h3>
-                    <p className="news-item-description">{article.description}</p>
-                    <a className="news-item-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                    <a href="#see-all" className="see-all-link">See All</a>
-                  </div>
-                ))}
+                <div className="news-top">
+                  {topNews.map((article, index) => (
+                    <div key={index} className="news-item">
+                       <img
+                        src={article.urlToImage || 'https://via.placeholder.com/150?text=News'}
+                        alt={article.title || 'News Image'}
+                        className="news-item-img"
+                      /> 
+                     
+                      <h3 className="news-item-title">{article.title}</h3>
+                      <p className="news-item-description">{article.description}</p>
+                      <a className="news-item-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+                    </div>
+                  ))}
+                </div>
+                <div className="news-bottom">
+                  {bottomNews.map((article, index) => (
+                    <div key={index} className="news-item">
+                      <img
+                        src={article.urlToImage || 'https://via.placeholder.com/40x20?text=News'}
+                        alt={article.title || 'News Image'}
+                        className="news-item-img"
+                      />
+                      <h3 className="news-item-title">{article.title}</h3>
+                      <p className="news-item-description">{article.description}</p>
+                      <a className="news-item-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -161,11 +185,14 @@ const App = () => {
               <Slider {...carouselSettings}>
                 {featuredNews.map((article, index) => (
                   <div key={index} className="news-item1">
-                    <img src="news-item-img"></img>
+                    <img
+                      src={article.urlToImage || 'https://via.placeholder.com/40x20?text=Featured'}
+                      alt={article.title || 'Featured Image'}
+                      className="news-item-img1"
+                    />
                     <h3 className="news-item-title1">{article.title}</h3>
                     <p className="news-item-description1">{article.description}</p>
                     <a className="news-item-link1" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                    <a href="#see-all" className="see-all-link">See All</a>
                   </div>
                 ))}
               </Slider>

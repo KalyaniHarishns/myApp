@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color:black;
     overflow-x: hidden;
     padding-top: 20px;
   }
@@ -35,6 +35,24 @@
     background-color: grey;
   }
   
+
+
+.logout-button {
+  background-color: gray; 
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top:200px;
+  width:150px;
+}
+
+.logout-button:hover {
+  background-color: gray; 
+}
+
   
 
 

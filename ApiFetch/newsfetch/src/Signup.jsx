@@ -6,10 +6,7 @@ const SignUp = () => {
     const [action, setAction] = useState("SignUp");
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        // Implement your sign-up logic here (e.g., API call)
-        // After successful sign-up, navigate to login page
-        navigate('/login');
+    const handleSubmit = () => {navigate('/login');
     };
 
     return (

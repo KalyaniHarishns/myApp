@@ -29,10 +29,7 @@ const Login = () => {
       </div>
 
       <div className="submit-container">
-        <div
-          className={action === "SignUp" ? "submit gray" : "submit"}
-          onClick={handleLogin}
-        >
+      <div className="submit" onClick={handleLogin}>
           Login
         </div>
       </div>

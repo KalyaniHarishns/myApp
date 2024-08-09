@@ -1,94 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import './Explore.css';  
+import channelImage1 from './Images/abcNews.jpg';
+import channelImage2 from './Images/ABC News.jpg';
+import channelImage3 from './Images/Aftenpost.jpg';
+import channelImage4 from './Images/Aljazeera.jpg';
+import channelImage5 from './Images/Ansa.it.jpg';
+import channelImage6 from './Images/Argaam.jpg';
+import channelImage7 from './Images/ARS.jpg';
+import channelImage8 from './Images/AryNews.jpg';
+import channelImage9 from './Images/AssociatedPress.jpg';
+import channelImage10 from './Images/AFR.jpg';
+import channelImage11 from './Images/Axios.jpg';
+import channelImage12 from './Images/BBCNews.jpg';
+import channelImage13 from './Images/BBCSport.png';
+import channelImage14 from './Images/Bild.jpg';
+import channelImage15 from './Images/BlastingNewsBR.png';
+
+const staticImages = [
+  channelImage1, channelImage2, channelImage3, channelImage4, channelImage5, channelImage6, channelImage7,
+  channelImage8, channelImage9, channelImage10, channelImage11, channelImage12, channelImage13, channelImage14, 
+  channelImage15
+];
 
 const App = () => {
-    const [channels, setChannels] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedChannel, setSelectedChannel] = useState(null); // State for selected channel
-    const [news, setNews] = useState([]); // State for news articles
-    const navigate = useNavigate();
+  const [channels, setChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showAllChannels, setShowAllChannels] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const channelsResponse = await axios.get('https://newsapi.org/v2/sources?apiKey=eb1be1c8ad3c4d948afcf48ca3908dc1');
-                setChannels(channelsResponse?.data?.sources);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    const handleChannelClick = async (channelId) => {
-     
-         try {
-             const newsResponse = await axios.get(`https://newsapi.org/v2/everything?sources=${channelId}&apiKey=eb1be1c8ad3c4d948afcf48ca3908dc1`);
-             setNews(newsResponse?.data?.articles);
-             setSelectedChannel(channelId);
-         } catch (error) {
-             console.error('Error fetching news:', error);
-         }
-     };
-
-    const handleExplore = () => {
-        navigate('/Explore'); 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const channelsResponse = await axios.get('https://newsapi.org/v2/sources?apiKey=bfdf4cb923be4950b2e30557ea76c65e');
+        setChannels(channelsResponse?.data?.sources || []);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
     };
 
-    return (
+    fetchData();
+  }, []);
+
+  
+  const visibleChannels = showAllChannels ? channels : channels.slice(0, 8);
+
+  return (
+    <div className="App1">
+      <main className="App-main1">
         <section className="section">
-            <h2>Explore Channels</h2>
-            <div className="channels">
-                {loading ? (
-                    <p>Loading channels...</p>
-                ) : (
-                    <div className="channels-list">
-                        {channels.map(channel => (
-                            <div key={channel.id} className="channel">
-                                <a href={`#channel-${channel.id}`} className="channel-link" onClick={() => handleChannelClick(channel.id)}>
-                                    <img
-                                        src={`https://via.placeholder.com/150?text=${channel.name}`}
-                                        alt={channel.name}
-                                        className="channel-img"
-                                    />
-                                    <div className="channel-name">{channel.name}</div>
-                                    {/* <div className="channel-description">{channel.description}</div> */}
-                                </a>
-                            </div>
-                        ))}
-                    </div>
-                )}
+          <div className="ExploreChannels-Header">
+            <h1>Explore Channels</h1>
+          
+           <div style={{display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center'}}> 
+            {channels.map((channel, index) => {
+              return <div
+              key={channel.id || index}
+              className="ExploreChannel"
+              onClick={() => window.open(`${channel.url}`, '_blank')}
+            >
+              <img 
+                src={staticImages[index % staticImages.length]} 
+                alt={channel.name || 'Channel Image'} 
+                className="channel-img" 
+              />
+              <div className="channel-name">{channel.name}</div>
             </div>
-
-            <div className="submit" onClick={handleExplore}>
-              
-            </div>
-
-            {selectedChannel && (
-                <div className="news-section">
-                    <h3>News from {channels.find(channel => channel.id === selectedChannel)?.name}</h3>
-                    <div className="news-list">
-                        {news.length === 0 ? (
-                            <p>No news available.</p>
-                        ) : (
-                            news.map((article, index) => (
-                                <div key={index} className="news-article">
-                                    <h4>{article.title}</h4>
-                                    {/* <p>{article.description}</p> */}
-                                    <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                </div>
-            )}
+            })}
+          </div>
+        </div>
         </section>
-    );
+      </main>
+    </div>
+  );
 };
-
 
 export default App;

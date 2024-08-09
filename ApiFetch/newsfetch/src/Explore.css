@@ -1,0 +1,74 @@
+.App1 {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.App-main1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.ExploreChannels-Header{
+  text-align:center;
+  font-size: large;
+}
+.section-header h2 {
+  margin: 0;
+  font-size: 1.5em; /* Adjust font size if needed */
+}
+
+.channel, .ExploreChannel {
+  flex: 0 0 auto;
+  /* width: 160px; */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ExploreChannel{
+  width: 220px;
+}
+.channel{
+  width: 160px;
+}
+
+.channel:hover , .ExploreChannel:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.channel-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.channel-name {
+  padding: 10px;
+  font-weight: bold;
+}
